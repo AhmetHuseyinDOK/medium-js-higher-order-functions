@@ -1,16 +1,16 @@
 const data = require('./data')
 
-function groupByProfession(data) {
+function groupBy(data, propertyKey) {
     const map = new Map();
     for (const entry of data) {
-        const profession = entry.profession;
-        if (map.has(profession)) {
-            map.get(profession).push(entry)
+        const key = entry[propertyKey];
+        if (map.has(key)) {
+            map.get(key).push(entry)
         } else {
-            map.set(profession, [entry])
+            map.set(key, [entry])
         }
     }
     return map;
 }
 
-console.log(groupByProfession(data));
+console.log(groupBy(data, 'age'));
