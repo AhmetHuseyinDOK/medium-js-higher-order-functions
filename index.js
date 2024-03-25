@@ -21,4 +21,16 @@ function ageGroupOfEntry(entry) {
     return `${base} - ${base + 10}`
 }
 
-console.log(groupBy(data, ageGroupOfEntry));
+function generateGroupByFunction(propertyKeyFunc) {
+    return function (data) {
+        return groupBy(data, propertyKeyFunc)
+    };
+}
+
+const groupByAgeGroups = generateGroupByFunction(ageGroupOfEntry);
+const groupByAge = generateGroupByFunction((entry) => entry.age);
+const groupByProfession = generateGroupByFunction((entry) => entry.profession);
+
+console.log(groupByProfession(data))
+console.log(groupByAge(data));
+console.log(groupByAgeGroups(data))
